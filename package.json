@@ -1,0 +1,11 @@
+{
+  "name": "ronaldmutebi-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio and CV for Ronald Mutebi (ronaldmutebi.com)",
+  "scripts": {
+    "dev": "npx serve .",
+    "deploy": "npx wrangler pages deploy . --project-name=ronaldmutebi"
+  }
+}
+

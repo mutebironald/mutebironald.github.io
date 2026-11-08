@@ -1,6 +1,6 @@
 # Ronald Mutebi — Senior Backend & Full-Stack Engineer
 
-**mutebironaldroninho@gmail.com** • [ronaldmutebi.com](https://ronaldmutebi.com) • [LinkedIn](https://www.linkedin.com/in/ronald-mutebi/) • [GitHub](https://github.com/mutebironald)
+**mutebironaldroninho@gmail.com** • [mutebironald.github.io](https://mutebironald.github.io) • [LinkedIn](https://www.linkedin.com/in/ronald-mutebi/) • [GitHub](https://github.com/mutebironald)
 
 ---
 
