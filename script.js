@@ -1,59 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const yearEl = document.getElementById('year');
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
+  const root = document.documentElement;
+  const themeToggle = document.getElementById('themeToggle');
+  const themeLabel = themeToggle?.querySelector('.theme-label');
+
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  if (savedTheme === 'light') {
+    root.setAttribute('data-theme', 'light');
+    if (themeLabel) themeLabel.textContent = 'Dark';
   }
 
-  // Experience role filtering
-  const filterChips = document.querySelectorAll('.filter-chip');
-  const timelineCards = document.querySelectorAll('.timeline-card');
-
-  filterChips.forEach((chip) => {
-    chip.addEventListener('click', () => {
-      const selected = chip.getAttribute('data-filter');
-
-      filterChips.forEach((c) => c.classList.remove('active'));
-      chip.classList.add('active');
-
-      timelineCards.forEach((card) => {
-        const tags = (card.getAttribute('data-tags') || '').split(' ');
-        if (selected === 'all' || tags.includes(selected)) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-
-  // Clean 1-click PDF resume export
-  const printBtn = document.getElementById('printResumeBtn');
-  if (printBtn) {
-    printBtn.addEventListener('click', () => {
-      // Ensure all cards are visible before printing
-      timelineCards.forEach((card) => {
-        card.style.display = '';
-      });
-      window.print();
-    });
-  }
-
-  // Copy email button
-  const copyEmailBtn = document.getElementById('copyEmailBtn');
-  if (copyEmailBtn) {
-    copyEmailBtn.addEventListener('click', async () => {
-      const email = copyEmailBtn.getAttribute('data-email');
-      try {
-        await navigator.clipboard.writeText(email);
-        const originalText = copyEmailBtn.textContent;
-        copyEmailBtn.textContent = 'Copied to Clipboard!';
-        setTimeout(() => {
-          copyEmailBtn.textContent = originalText;
-        }, 2000);
-      } catch {
-        window.location.href = `mailto:${email}`;
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const isLight = root.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        root.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'dark');
+        if (themeLabel) themeLabel.textContent = 'Light';
+      } else {
+        root.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        if (themeLabel) themeLabel.textContent = 'Dark';
       }
     });
   }
-});
 
+  const printBtn = document.getElementById('printBtn');
+  if (printBtn) {
+    printBtn.addEventListener('click', () => {
+      window.print();
+    });
+  }
+});
